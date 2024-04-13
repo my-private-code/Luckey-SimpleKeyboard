@@ -32,23 +32,7 @@ class KeyboardViewController: UIInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Initialize the SwiftUI view
-        let keyboardView = KeyboardView(viewController: self)
-        let hostingController = UIHostingController(rootView: keyboardView)
-        
-        // Add the hosting controller as a child view controller
-        addChild(hostingController)
-        view.addSubview(hostingController.view)
-        hostingController.didMove(toParent: self)
-
-        // Set constraints for the hosting controller's view
-        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            hostingController.view.leftAnchor.constraint(equalTo: view.leftAnchor),
-            hostingController.view.rightAnchor.constraint(equalTo: view.rightAnchor),
-            hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
-            hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        self.presentKeyboardView()
         
         // Perform custom UI setup here
         self.nextKeyboardButton = UIButton(type: .system)
@@ -72,7 +56,7 @@ class KeyboardViewController: UIInputViewController {
     
     override func textWillChange(_ textInput: UITextInput?) {
         // The app is about to change the document's contents. Perform any preparation here.
-        print(textInput)
+//        print(textInput)
     }
     
     override func textDidChange(_ textInput: UITextInput?) {
@@ -88,11 +72,24 @@ class KeyboardViewController: UIInputViewController {
         self.nextKeyboardButton.setTitleColor(textColor, for: [])
     }
     
-    func presentKeyboard() {
-        let keyboardSettings = KeyboardSettings(language: .english, textInput: self.textField)
-        let keyboardViewController = MyKeyboardMaker(settings: keyboardSettings).makeViewController()
-//        return keyboardViewController
-//        pushViewController(keyboardVC, animated: true)
+    func presentKeyboardView() {
+        let keyboardSettings = KeyboardSettings(language: .english, textInput: self.textField, theme: KeyboardTheme.floating,
+                                                showNumbers: true,
+                                                isUpperCase: false
+                                                )
+        let hostingController = MyKeyboardMaker(settings: keyboardSettings).makeViewController()
+        addChild(hostingController)
+        view.addSubview(hostingController.view)
+        hostingController.didMove(toParent: self)
+
+        // Set constraints for the hosting controller's view
+        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            hostingController.view.leftAnchor.constraint(equalTo: view.leftAnchor),
+            hostingController.view.rightAnchor.constraint(equalTo: view.rightAnchor),
+            hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
 
 }
