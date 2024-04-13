@@ -14,6 +14,8 @@
 		AB24877F2BCA0E8F005A812C /* Luckey202404Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB24877E2BCA0E8F005A812C /* Luckey202404Tests.swift */; };
 		AB2487892BCA0E8F005A812C /* Luckey202404UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2487882BCA0E8F005A812C /* Luckey202404UITests.swift */; };
 		AB24878B2BCA0E8F005A812C /* Luckey202404UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB24878A2BCA0E8F005A812C /* Luckey202404UITestsLaunchTests.swift */; };
+		AB24879E2BCA0F09005A812C /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB24879D2BCA0F09005A812C /* KeyboardViewController.swift */; };
+		AB2487A22BCA0F09005A812C /* Luckey.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AB24879B2BCA0F09005A812C /* Luckey.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +33,28 @@
 			remoteGlobalIDString = AB2487692BCA0E8E005A812C;
 			remoteInfo = Luckey202404;
 		};
+		AB2487A02BCA0F09005A812C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB2487622BCA0E8E005A812C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AB24879A2BCA0F09005A812C;
+			remoteInfo = Luckey;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AB2487A62BCA0F09005A812C /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AB2487A22BCA0F09005A812C /* Luckey.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		AB24876A2BCA0E8E005A812C /* Luckey202404.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Luckey202404.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +67,9 @@
 		AB2487842BCA0E8F005A812C /* Luckey202404UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Luckey202404UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB2487882BCA0E8F005A812C /* Luckey202404UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Luckey202404UITests.swift; sourceTree = "<group>"; };
 		AB24878A2BCA0E8F005A812C /* Luckey202404UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Luckey202404UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AB24879B2BCA0F09005A812C /* Luckey.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Luckey.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB24879D2BCA0F09005A812C /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		AB24879F2BCA0F09005A812C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +94,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AB2487982BCA0F09005A812C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -77,6 +110,7 @@
 				AB24876C2BCA0E8E005A812C /* Luckey202404 */,
 				AB24877D2BCA0E8F005A812C /* Luckey202404Tests */,
 				AB2487872BCA0E8F005A812C /* Luckey202404UITests */,
+				AB24879C2BCA0F09005A812C /* Luckey */,
 				AB24876B2BCA0E8E005A812C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,6 +121,7 @@
 				AB24876A2BCA0E8E005A812C /* Luckey202404.app */,
 				AB24877A2BCA0E8F005A812C /* Luckey202404Tests.xctest */,
 				AB2487842BCA0E8F005A812C /* Luckey202404UITests.xctest */,
+				AB24879B2BCA0F09005A812C /* Luckey.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,6 +162,15 @@
 			path = Luckey202404UITests;
 			sourceTree = "<group>";
 		};
+		AB24879C2BCA0F09005A812C /* Luckey */ = {
+			isa = PBXGroup;
+			children = (
+				AB24879D2BCA0F09005A812C /* KeyboardViewController.swift */,
+				AB24879F2BCA0F09005A812C /* Info.plist */,
+			);
+			path = Luckey;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,10 +181,12 @@
 				AB2487662BCA0E8E005A812C /* Sources */,
 				AB2487672BCA0E8E005A812C /* Frameworks */,
 				AB2487682BCA0E8E005A812C /* Resources */,
+				AB2487A62BCA0F09005A812C /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				AB2487A12BCA0F09005A812C /* PBXTargetDependency */,
 			);
 			name = Luckey202404;
 			productName = Luckey202404;
@@ -183,6 +229,23 @@
 			productReference = AB2487842BCA0E8F005A812C /* Luckey202404UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		AB24879A2BCA0F09005A812C /* Luckey */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB2487A32BCA0F09005A812C /* Build configuration list for PBXNativeTarget "Luckey" */;
+			buildPhases = (
+				AB2487972BCA0F09005A812C /* Sources */,
+				AB2487982BCA0F09005A812C /* Frameworks */,
+				AB2487992BCA0F09005A812C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Luckey;
+			productName = Luckey;
+			productReference = AB24879B2BCA0F09005A812C /* Luckey.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -204,6 +267,9 @@
 						CreatedOnToolsVersion = 15.3;
 						TestTargetID = AB2487692BCA0E8E005A812C;
 					};
+					AB24879A2BCA0F09005A812C = {
+						CreatedOnToolsVersion = 15.3;
+					};
 				};
 			};
 			buildConfigurationList = AB2487652BCA0E8E005A812C /* Build configuration list for PBXProject "Luckey202404" */;
@@ -222,6 +288,7 @@
 				AB2487692BCA0E8E005A812C /* Luckey202404 */,
 				AB2487792BCA0E8F005A812C /* Luckey202404Tests */,
 				AB2487832BCA0E8F005A812C /* Luckey202404UITests */,
+				AB24879A2BCA0F09005A812C /* Luckey */,
 			);
 		};
 /* End PBXProject section */
@@ -244,6 +311,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		AB2487822BCA0E8F005A812C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB2487992BCA0F09005A812C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -279,6 +353,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AB2487972BCA0F09005A812C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB24879E2BCA0F09005A812C /* KeyboardViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -291,6 +373,11 @@
 			isa = PBXTargetDependency;
 			target = AB2487692BCA0E8E005A812C /* Luckey202404 */;
 			targetProxy = AB2487852BCA0E8F005A812C /* PBXContainerItemProxy */;
+		};
+		AB2487A12BCA0F09005A812C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AB24879A2BCA0F09005A812C /* Luckey */;
+			targetProxy = AB2487A02BCA0F09005A812C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -347,7 +434,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -404,7 +491,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -417,6 +504,7 @@
 		AB24878F2BCA0E8F005A812C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -446,6 +534,7 @@
 		AB2487902BCA0E8F005A812C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -548,6 +637,58 @@
 			};
 			name = Release;
 		};
+		AB2487A42BCA0F09005A812C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AB9N6M8P76;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Luckey/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Luckey;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.dongyuwei.Luckey202404.Luckey;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AB2487A52BCA0F09005A812C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AB9N6M8P76;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Luckey/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Luckey;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.dongyuwei.Luckey202404.Luckey;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -583,6 +724,15 @@
 			buildConfigurations = (
 				AB2487952BCA0E8F005A812C /* Debug */,
 				AB2487962BCA0E8F005A812C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB2487A32BCA0F09005A812C /* Build configuration list for PBXNativeTarget "Luckey" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB2487A42BCA0F09005A812C /* Debug */,
+				AB2487A52BCA0F09005A812C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
