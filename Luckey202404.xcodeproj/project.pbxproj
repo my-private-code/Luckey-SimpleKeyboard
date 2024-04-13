@@ -16,6 +16,8 @@
 		AB24878B2BCA0E8F005A812C /* Luckey202404UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB24878A2BCA0E8F005A812C /* Luckey202404UITestsLaunchTests.swift */; };
 		AB24879E2BCA0F09005A812C /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB24879D2BCA0F09005A812C /* KeyboardViewController.swift */; };
 		AB2487A22BCA0F09005A812C /* Luckey.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AB24879B2BCA0F09005A812C /* Luckey.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AB2487A92BCA138D005A812C /* SimpleKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = AB2487A82BCA138D005A812C /* SimpleKeyboard */; };
+		AB2487AB2BCA1B64005A812C /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2487AA2BCA1B64005A812C /* KeyboardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,7 @@
 		AB24879B2BCA0F09005A812C /* Luckey.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Luckey.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB24879D2BCA0F09005A812C /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		AB24879F2BCA0F09005A812C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB2487AA2BCA1B64005A812C /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB2487A92BCA138D005A812C /* SimpleKeyboard in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +171,7 @@
 			children = (
 				AB24879D2BCA0F09005A812C /* KeyboardViewController.swift */,
 				AB24879F2BCA0F09005A812C /* Info.plist */,
+				AB2487AA2BCA1B64005A812C /* KeyboardView.swift */,
 			);
 			path = Luckey;
 			sourceTree = "<group>";
@@ -242,6 +247,9 @@
 			dependencies = (
 			);
 			name = Luckey;
+			packageProductDependencies = (
+				AB2487A82BCA138D005A812C /* SimpleKeyboard */,
+			);
 			productName = Luckey;
 			productReference = AB24879B2BCA0F09005A812C /* Luckey.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -281,6 +289,9 @@
 				Base,
 			);
 			mainGroup = AB2487612BCA0E8E005A812C;
+			packageReferences = (
+				AB2487A72BCA138D005A812C /* XCRemoteSwiftPackageReference "SimpleKeyboard" */,
+			);
 			productRefGroup = AB24876B2BCA0E8E005A812C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -358,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB24879E2BCA0F09005A812C /* KeyboardViewController.swift in Sources */,
+				AB2487AB2BCA1B64005A812C /* KeyboardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,6 +750,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AB2487A72BCA138D005A812C /* XCRemoteSwiftPackageReference "SimpleKeyboard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/thisIsTheFoxe/SimpleKeyboard";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AB2487A82BCA138D005A812C /* SimpleKeyboard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB2487A72BCA138D005A812C /* XCRemoteSwiftPackageReference "SimpleKeyboard" */;
+			productName = SimpleKeyboard;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AB2487622BCA0E8E005A812C /* Project object */;
 }

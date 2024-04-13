@@ -1,0 +1,15 @@
+{
+  "originHash" : "5c67a6c74a2d4a638cd61a455cbd18b07fb71f06efd041fa4b7e1aac82041df0",
+  "pins" : [
+    {
+      "identity" : "simplekeyboard",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/thisIsTheFoxe/SimpleKeyboard",
+      "state" : {
+        "revision" : "4e9055a4a29c697cec0441e6a828458caeaabef8",
+        "version" : "0.4.0"
+      }
+    }
+  ],
+  "version" : 3
+}
