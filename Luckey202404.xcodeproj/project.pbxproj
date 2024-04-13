@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB16E3462BCAC4020019D04E /* SimpleKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = AB16E3452BCAC4020019D04E /* SimpleKeyboard */; };
 		AB24876E2BCA0E8E005A812C /* Luckey202404App.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB24876D2BCA0E8E005A812C /* Luckey202404App.swift */; };
 		AB2487702BCA0E8E005A812C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB24876F2BCA0E8E005A812C /* ContentView.swift */; };
 		AB2487722BCA0E8F005A812C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB2487712BCA0E8F005A812C /* Assets.xcassets */; };
@@ -16,7 +17,6 @@
 		AB24878B2BCA0E8F005A812C /* Luckey202404UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB24878A2BCA0E8F005A812C /* Luckey202404UITestsLaunchTests.swift */; };
 		AB24879E2BCA0F09005A812C /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB24879D2BCA0F09005A812C /* KeyboardViewController.swift */; };
 		AB2487A22BCA0F09005A812C /* Luckey.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AB24879B2BCA0F09005A812C /* Luckey.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		AB2487A92BCA138D005A812C /* SimpleKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = AB2487A82BCA138D005A812C /* SimpleKeyboard */; };
 		AB2487AB2BCA1B64005A812C /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2487AA2BCA1B64005A812C /* KeyboardView.swift */; };
 		AB2487AE2BCAA53E005A812C /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = AB2487AD2BCAA53E005A812C /* GRDB */; };
 		AB2487B12BCAA6E1005A812C /* english.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = AB2487AF2BCAA6E1005A812C /* english.sqlite3 */; };
@@ -108,8 +108,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB2487A92BCA138D005A812C /* SimpleKeyboard in Frameworks */,
 				AB2487AE2BCAA53E005A812C /* GRDB in Frameworks */,
+				AB16E3462BCAC4020019D04E /* SimpleKeyboard in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,8 +259,8 @@
 			);
 			name = Luckey;
 			packageProductDependencies = (
-				AB2487A82BCA138D005A812C /* SimpleKeyboard */,
 				AB2487AD2BCAA53E005A812C /* GRDB */,
+				AB16E3452BCAC4020019D04E /* SimpleKeyboard */,
 			);
 			productName = Luckey;
 			productReference = AB24879B2BCA0F09005A812C /* Luckey.appex */;
@@ -302,8 +302,8 @@
 			);
 			mainGroup = AB2487612BCA0E8E005A812C;
 			packageReferences = (
-				AB2487A72BCA138D005A812C /* XCRemoteSwiftPackageReference "SimpleKeyboard" */,
 				AB2487AC2BCAA53E005A812C /* XCRemoteSwiftPackageReference "GRDB.swift" */,
+				AB16E3442BCAC4020019D04E /* XCLocalSwiftPackageReference "SimpleKeyboard" */,
 			);
 			productRefGroup = AB24876B2BCA0E8E005A812C /* Products */;
 			projectDirPath = "";
@@ -767,15 +767,14 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		AB2487A72BCA138D005A812C /* XCRemoteSwiftPackageReference "SimpleKeyboard" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/thisIsTheFoxe/SimpleKeyboard";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.4.0;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		AB16E3442BCAC4020019D04E /* XCLocalSwiftPackageReference "SimpleKeyboard" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = SimpleKeyboard;
 		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
 		AB2487AC2BCAA53E005A812C /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/groue/GRDB.swift.git";
@@ -787,9 +786,8 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		AB2487A82BCA138D005A812C /* SimpleKeyboard */ = {
+		AB16E3452BCAC4020019D04E /* SimpleKeyboard */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AB2487A72BCA138D005A812C /* XCRemoteSwiftPackageReference "SimpleKeyboard" */;
 			productName = SimpleKeyboard;
 		};
 		AB2487AD2BCAA53E005A812C /* GRDB */ = {

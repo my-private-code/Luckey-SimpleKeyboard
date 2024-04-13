@@ -1,5 +1,5 @@
 {
-  "originHash" : "b4c5a10826d880644fd619335495125b81837a6a97a013a4a08f78ecc1041241",
+  "originHash" : "2df6280486a953f9a24c0168cd748e29d7eb8ce422bcacebb5e9e2b4367d9654",
   "pins" : [
     {
       "identity" : "grdb.swift",
@@ -8,15 +8,6 @@
       "state" : {
         "branch" : "master",
         "revision" : "77b85bed259b7f107710a0b78c439b1c5839dc45"
-      }
-    },
-    {
-      "identity" : "simplekeyboard",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/thisIsTheFoxe/SimpleKeyboard",
-      "state" : {
-        "revision" : "4e9055a4a29c697cec0441e6a828458caeaabef8",
-        "version" : "0.4.0"
       }
     }
   ],

@@ -1,0 +1,27 @@
+name: Swift
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+# build also for iOS, not possible (yet)? .-.
+        
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build
+      run: swift build -v
+    - name: Run tests
+      run: swift test -v --enable-code-coverage
+    - name: Generate lcov file
+      run: |
+        xcrun llvm-cov export -format=lcov \
+          -instr-profile .build/debug/codecov/default.profdata \
+          -ignore-filename-regex="(.build/|Tests/)" \
+          .build/debug/SimpleKeyboardPackageTests.xctest/Contents/MacOS/SimpleKeyboardPackageTests > ./coverage.lcov
+    - name: Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
