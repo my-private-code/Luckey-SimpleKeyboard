@@ -9,6 +9,25 @@ import UIKit
 import SimpleKeyboard
 import SwiftUI
 
+extension UIInputViewController: SimpleKeyboardInput {
+    public var currentText: String {
+        // This might not be directly possible as `textDocumentProxy` does not provide the entire text directly
+        return self.textDocumentProxy.documentContextBeforeInput ?? "" + (self.textDocumentProxy.documentContextAfterInput ?? "")
+    }
+
+    public func replaceAll(with text: String) {
+        // First, delete all existing text
+        if let beforeText = self.textDocumentProxy.documentContextBeforeInput {
+            for _ in 0..<beforeText.count {
+                self.textDocumentProxy.deleteBackward()
+            }
+        }
+
+        // Insert new text
+        self.textDocumentProxy.insertText(text)
+    }
+}
+
 struct MyKeyboardMaker {
     
     @ObservedObject var settings: KeyboardSettings
@@ -21,7 +40,6 @@ struct MyKeyboardMaker {
 class KeyboardViewController: UIInputViewController {
 
     @IBOutlet var nextKeyboardButton: UIButton!
-    @IBOutlet var textField: UITextField!
     
     override func updateViewConstraints() {
         super.updateViewConstraints()
@@ -73,7 +91,10 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func presentKeyboardView() {
-        let keyboardSettings = KeyboardSettings(language: .english, textInput: self.textField, theme: KeyboardTheme.floating,
+        let keyboardSettings = KeyboardSettings(language: .english, 
+                                                // 还可以参考 SimpleKeyboard/Tests/SimpleKeyboardTests/InputTester.swift
+                                                textInput: self,
+                                                theme: KeyboardTheme.floating,
                                                 showNumbers: true,
                                                 isUpperCase: false
                                                 )
