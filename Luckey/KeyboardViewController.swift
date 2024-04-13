@@ -9,6 +9,8 @@ import UIKit
 import SimpleKeyboard
 import SwiftUI
 
+var imeService = ImeService()
+
 extension UIInputViewController: SimpleKeyboardInput {
     public var currentText: String {
         // This might not be directly possible as `textDocumentProxy` does not provide the entire text directly
@@ -25,6 +27,7 @@ extension UIInputViewController: SimpleKeyboardInput {
 
         // Insert new text
         self.textDocumentProxy.insertText(text)
+//        self.textDocumentProxy.insertText(text + imeService.fetchEnglishWords(withPrefix: text)[0] + imeService.fetchHanZiByPinyin(withPrefix: text)[0])
     }
 }
 

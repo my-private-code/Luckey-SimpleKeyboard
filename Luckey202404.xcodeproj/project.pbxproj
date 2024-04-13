@@ -18,6 +18,10 @@
 		AB2487A22BCA0F09005A812C /* Luckey.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AB24879B2BCA0F09005A812C /* Luckey.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AB2487A92BCA138D005A812C /* SimpleKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = AB2487A82BCA138D005A812C /* SimpleKeyboard */; };
 		AB2487AB2BCA1B64005A812C /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2487AA2BCA1B64005A812C /* KeyboardView.swift */; };
+		AB2487AE2BCAA53E005A812C /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = AB2487AD2BCAA53E005A812C /* GRDB */; };
+		AB2487B12BCAA6E1005A812C /* english.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = AB2487AF2BCAA6E1005A812C /* english.sqlite3 */; };
+		AB2487B22BCAA6E1005A812C /* pinyin_data.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = AB2487B02BCAA6E1005A812C /* pinyin_data.sqlite3 */; };
+		AB2487B42BCAA706005A812C /* ImeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2487B32BCAA706005A812C /* ImeService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +77,9 @@
 		AB24879D2BCA0F09005A812C /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		AB24879F2BCA0F09005A812C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB2487AA2BCA1B64005A812C /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		AB2487AF2BCAA6E1005A812C /* english.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = english.sqlite3; path = sqlite/english.sqlite3; sourceTree = "<group>"; };
+		AB2487B02BCAA6E1005A812C /* pinyin_data.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = pinyin_data.sqlite3; path = sqlite/pinyin_data.sqlite3; sourceTree = "<group>"; };
+		AB2487B32BCAA706005A812C /* ImeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImeService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +109,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB2487A92BCA138D005A812C /* SimpleKeyboard in Frameworks */,
+				AB2487AE2BCAA53E005A812C /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,9 +177,12 @@
 		AB24879C2BCA0F09005A812C /* Luckey */ = {
 			isa = PBXGroup;
 			children = (
-				AB24879D2BCA0F09005A812C /* KeyboardViewController.swift */,
+				AB2487AF2BCAA6E1005A812C /* english.sqlite3 */,
+				AB2487B02BCAA6E1005A812C /* pinyin_data.sqlite3 */,
 				AB24879F2BCA0F09005A812C /* Info.plist */,
+				AB24879D2BCA0F09005A812C /* KeyboardViewController.swift */,
 				AB2487AA2BCA1B64005A812C /* KeyboardView.swift */,
+				AB2487B32BCAA706005A812C /* ImeService.swift */,
 			);
 			path = Luckey;
 			sourceTree = "<group>";
@@ -249,6 +260,7 @@
 			name = Luckey;
 			packageProductDependencies = (
 				AB2487A82BCA138D005A812C /* SimpleKeyboard */,
+				AB2487AD2BCAA53E005A812C /* GRDB */,
 			);
 			productName = Luckey;
 			productReference = AB24879B2BCA0F09005A812C /* Luckey.appex */;
@@ -291,6 +303,7 @@
 			mainGroup = AB2487612BCA0E8E005A812C;
 			packageReferences = (
 				AB2487A72BCA138D005A812C /* XCRemoteSwiftPackageReference "SimpleKeyboard" */,
+				AB2487AC2BCAA53E005A812C /* XCRemoteSwiftPackageReference "GRDB.swift" */,
 			);
 			productRefGroup = AB24876B2BCA0E8E005A812C /* Products */;
 			projectDirPath = "";
@@ -332,6 +345,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB2487B22BCAA6E1005A812C /* pinyin_data.sqlite3 in Resources */,
+				AB2487B12BCAA6E1005A812C /* english.sqlite3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +385,7 @@
 			files = (
 				AB24879E2BCA0F09005A812C /* KeyboardViewController.swift in Sources */,
 				AB2487AB2BCA1B64005A812C /* KeyboardView.swift in Sources */,
+				AB2487B42BCAA706005A812C /* ImeService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,6 +776,14 @@
 				minimumVersion = 0.4.0;
 			};
 		};
+		AB2487AC2BCAA53E005A812C /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -767,6 +791,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AB2487A72BCA138D005A812C /* XCRemoteSwiftPackageReference "SimpleKeyboard" */;
 			productName = SimpleKeyboard;
+		};
+		AB2487AD2BCAA53E005A812C /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB2487AC2BCAA53E005A812C /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
