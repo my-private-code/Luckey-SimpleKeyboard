@@ -11,6 +11,7 @@ public struct SimpleStandardKeyboard: View, ThemeableView {
     var theme: KeyboardTheme { settings.theme }
 
     @ObservedObject var settings: KeyboardSettings
+    @ObservedObject private var sharedState = SharedState.shared
 
     public init(settings: KeyboardSettings, textInput textInputOverride: Binding<String>? = nil) {
         self.settings = settings
@@ -22,6 +23,11 @@ public struct SimpleStandardKeyboard: View, ThemeableView {
 
     var spaceRow: some View {
         HStack {
+            if let languageIcon = settings.languageButton {
+                ActionKeyButton(icon: languageIcon) {
+                    self.settings.action?()
+                }
+            }
             if settings.showSpace {
                 SpaceKeyButton(text: $settings.text)
                     .layoutPriority(2)
@@ -30,6 +36,14 @@ public struct SimpleStandardKeyboard: View, ThemeableView {
                 ActionKeyButton(icon: actionIcon) {
                     self.settings.action?()
                 }
+            }
+        }
+    }
+    
+    var candidatesRow: some View {
+        HStack(spacing: 10) {
+            ForEach($sharedState.candidates, id: \.self) { key in
+                KeyButton(text: self.$settings.text, letter: key.currentText)
             }
         }
     }
@@ -90,6 +104,10 @@ public struct SimpleStandardKeyboard: View, ThemeableView {
     public var body: some View {
         if settings.isShown {
             VStack(spacing: 10) {
+                if settings.showCandidates {
+                    candidatesRow
+                        .padding(.bottom, 5)
+                }
                 if settings.showNumbers {
                     numbersRow
                         .padding(.bottom, 5)
@@ -128,7 +146,7 @@ struct SimpleStandardKeyboard_Previews: PreviewProvider {
                         showSpace: false,
                         isUpperCase: true))
                     .environment(\.locale, .init(identifier: "ru"))
-//                    .preferredColorScheme(.dark)
+                    .preferredColorScheme(.dark)
             }
         }
     }

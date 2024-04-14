@@ -1,5 +1,6 @@
 import SwiftUI
 
+// TODO: delete unused file
 struct KeyboardView: View {
     var viewController: KeyboardViewController
     var body: some View {

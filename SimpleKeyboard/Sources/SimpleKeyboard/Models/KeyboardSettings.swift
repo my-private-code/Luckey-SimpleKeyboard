@@ -63,6 +63,7 @@ public class KeyboardSettings: ObservableObject {
 
     /// `nil` mean there is no action icon
     var actionButton: Icon?
+    var languageButton: Icon?
 
     public var textInput: SimpleKeyboardInput?
     public var action: (() -> Void)?
@@ -71,6 +72,7 @@ public class KeyboardSettings: ObservableObject {
 
     @Published public var showNumbers: Bool
     @Published public var showSpace: Bool
+    @Published public var showCandidates: Bool
 
     /// `nil` mean there is no need to switch, so there will be no shift-key
     @Published public var isUpperCase: Bool?
@@ -82,8 +84,10 @@ public class KeyboardSettings: ObservableObject {
         textInput: SimpleKeyboardInput?,
         theme: KeyboardTheme = .system,
         actionButton: Icon? = .done,
+        languageButton: Icon? = .language,
         showNumbers: Bool = false,
         showSpace: Bool = true,
+        showCandidates: Bool = true,
         isUpperCase: Bool? = nil,
         action: (() -> Void)? = nil) {
             self.textInput = textInput
@@ -94,10 +98,20 @@ public class KeyboardSettings: ObservableObject {
             self.showSpace = showSpace
             self.isUpperCase = isUpperCase
             self.actionButton = actionButton
+            self.languageButton = languageButton
+            self.showCandidates = showCandidates
         }
 
     func changeTextInput(to newInput: SimpleKeyboardInput) {
         self.textInput = newInput
         self.text = newInput.currentText
     }
+}
+
+
+public class SharedState: ObservableObject {
+    public static let shared = SharedState()
+    @Published public var candidates: [String] = []
+
+    private init() {}  // Private initializer to ensure Singleton usage
 }

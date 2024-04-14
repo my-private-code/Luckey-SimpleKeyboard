@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AB16E3462BCAC4020019D04E /* SimpleKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = AB16E3452BCAC4020019D04E /* SimpleKeyboard */; };
+		AB16E3482BCBF8DF0019D04E /* KeyboardInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB16E3472BCBF8DF0019D04E /* KeyboardInput.swift */; };
 		AB24876E2BCA0E8E005A812C /* Luckey202404App.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB24876D2BCA0E8E005A812C /* Luckey202404App.swift */; };
 		AB2487702BCA0E8E005A812C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB24876F2BCA0E8E005A812C /* ContentView.swift */; };
 		AB2487722BCA0E8F005A812C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB2487712BCA0E8F005A812C /* Assets.xcassets */; };
@@ -63,6 +64,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB16E3472BCBF8DF0019D04E /* KeyboardInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInput.swift; sourceTree = "<group>"; };
 		AB24876A2BCA0E8E005A812C /* Luckey202404.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Luckey202404.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB24876D2BCA0E8E005A812C /* Luckey202404App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Luckey202404App.swift; sourceTree = "<group>"; };
 		AB24876F2BCA0E8E005A812C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				AB24879D2BCA0F09005A812C /* KeyboardViewController.swift */,
 				AB2487AA2BCA1B64005A812C /* KeyboardView.swift */,
 				AB2487B32BCAA706005A812C /* ImeService.swift */,
+				AB16E3472BCBF8DF0019D04E /* KeyboardInput.swift */,
 			);
 			path = Luckey;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				AB24879E2BCA0F09005A812C /* KeyboardViewController.swift in Sources */,
 				AB2487AB2BCA1B64005A812C /* KeyboardView.swift in Sources */,
 				AB2487B42BCAA706005A812C /* ImeService.swift in Sources */,
+				AB16E3482BCBF8DF0019D04E /* KeyboardInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

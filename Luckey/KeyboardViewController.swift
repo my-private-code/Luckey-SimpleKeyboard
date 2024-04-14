@@ -9,30 +9,7 @@ import UIKit
 import SimpleKeyboard
 import SwiftUI
 
-var imeService = ImeService()
-
-extension UIInputViewController: SimpleKeyboardInput {
-    public var currentText: String {
-        // This might not be directly possible as `textDocumentProxy` does not provide the entire text directly
-        return self.textDocumentProxy.documentContextBeforeInput ?? "" + (self.textDocumentProxy.documentContextAfterInput ?? "")
-    }
-
-    public func replaceAll(with text: String) {
-        // First, delete all existing text
-        if let beforeText = self.textDocumentProxy.documentContextBeforeInput {
-            for _ in 0..<beforeText.count {
-                self.textDocumentProxy.deleteBackward()
-            }
-        }
-
-        // Insert new text
-        self.textDocumentProxy.insertText(text)
-//        self.textDocumentProxy.insertText(text + imeService.fetchEnglishWords(withPrefix: text)[0] + imeService.fetchHanZiByPinyin(withPrefix: text)[0])
-    }
-}
-
 struct MyKeyboardMaker {
-    
     @ObservedObject var settings: KeyboardSettings
     
     func makeViewController() -> UIHostingController<SimpleStandardKeyboard> {
@@ -94,9 +71,10 @@ class KeyboardViewController: UIInputViewController {
     }
     
     func presentKeyboardView() {
-        let keyboardSettings = KeyboardSettings(language: .english, 
+        let textInput = KeyBoardInput(textDocumentProxy: self.textDocumentProxy)
+        let keyboardSettings = KeyboardSettings(language: .english,
                                                 // 还可以参考 SimpleKeyboard/Tests/SimpleKeyboardTests/InputTester.swift
-                                                textInput: self,
+                                                textInput: textInput,
                                                 theme: KeyboardTheme.floating,
                                                 showNumbers: true,
                                                 isUpperCase: false

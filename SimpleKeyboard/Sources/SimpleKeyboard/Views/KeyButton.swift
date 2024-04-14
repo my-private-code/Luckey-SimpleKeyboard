@@ -192,11 +192,12 @@ struct ActionKeyButton: View {
 }
 
 public enum Icon {
-    case done, search, go
+    case done, language, search, go
 
     var view: some View {
         switch self {
         case .done: return AnyView(Text("Done!", bundle: .module))
+        case .language: return AnyView(Text("中/英", bundle: .module))
         case .search:
             if #available(iOS 14, macOS 11, *) {
                 return AnyView(Image(systemName: "magnifyingglass"))
