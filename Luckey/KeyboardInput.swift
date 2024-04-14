@@ -27,6 +27,9 @@ class KeyBoardInput: ObservableObject, SimpleKeyboardInput {
         let words = sharedState.selectedLanguage == "en" ? imeService.fetchEnglishWords(withPrefix: text) : imeService.fetchHanZiByPinyin(withPrefix: text)
 
         sharedState.candidates = Array(words.prefix(4))
+        if (text.isEmpty) {
+            sharedState.candidates = []
+        }
         
         // First, delete all existing text
         if let beforeText = self.textDocumentProxy.documentContextBeforeInput {
