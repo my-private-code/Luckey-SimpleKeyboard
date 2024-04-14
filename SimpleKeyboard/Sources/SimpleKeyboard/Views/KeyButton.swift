@@ -208,3 +208,28 @@ public enum Icon {
         }
     }
 }
+
+struct SwitchLanguageButton: View {
+    @ObservedObject private var sharedState = SharedState.shared
+    
+    var body: some View {
+        Button(action: {
+            sharedState.selectedLanguage = sharedState.selectedLanguage == "en" ? "zh" : "en"
+        }) {
+            HStack {
+                Text("英")
+                    .font(.system(size: sharedState.selectedLanguage == "en" ? 16 : 12)) // Larger font size when selected
+                Text("/")
+                    .font(.system(size: 16))
+                Text("中")
+                    .font(.system(size: sharedState.selectedLanguage == "zh" ? 16 : 12)) // Larger font size when selected
+            }
+            .frame(minWidth: 100, maxWidth: .infinity)
+            .frame(height: 50)
+            .foregroundColor(.white)
+            .background(Color.blue)
+            .cornerRadius(7)
+            .shadow(color: .black, radius: 2, y: 2)
+        }
+    }
+}

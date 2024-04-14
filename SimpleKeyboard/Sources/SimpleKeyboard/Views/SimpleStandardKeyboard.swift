@@ -24,10 +24,7 @@ public struct SimpleStandardKeyboard: View, ThemeableView {
     var spaceRow: some View {
         HStack {
             if let languageIcon = settings.languageButton {
-                ActionKeyButton(icon: languageIcon) {
-                    self.settings.action?()
-                    sharedState.selectedLanguage = sharedState.selectedLanguage == "en" ? "zh" : "en"
-                }
+                SwitchLanguageButton()
             }
             if settings.showSpace {
                 SpaceKeyButton(text: $settings.text)
