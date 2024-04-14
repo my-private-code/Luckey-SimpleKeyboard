@@ -26,7 +26,8 @@ class KeyBoardInput: ObservableObject, SimpleKeyboardInput {
 
         let words = sharedState.selectedLanguage == "en" ? imeService.fetchEnglishWords(withPrefix: text) : imeService.fetchHanZiByPinyin(withPrefix: text)
 
-        sharedState.candidates = Array(words.prefix(4))
+//        sharedState.candidates = Array(words.prefix(4))
+        sharedState.candidates = words
         if (text.isEmpty) {
             sharedState.candidates = []
         }

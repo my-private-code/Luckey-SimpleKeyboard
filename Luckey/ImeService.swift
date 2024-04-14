@@ -51,7 +51,7 @@ class ImeService {
         var words: [Word] = []
         
         dbQueue.inDatabase { db in
-            let sql = "SELECT * FROM words WHERE word LIKE ? ORDER BY freq DESC LIMIT 10"
+            let sql = "SELECT * FROM words WHERE word LIKE ? ORDER BY freq DESC LIMIT 20"
             let pattern = "\(prefix)%"
             words = try! Word.fetchAll(db, sql: sql, arguments: [pattern])
         }
@@ -62,7 +62,7 @@ class ImeService {
         var words: [Pinyin] = []
         
         pyDbQueue.inDatabase { db in
-            let sql = "SELECT * FROM pinyin_data WHERE py LIKE ? or abbr LIKE ? ORDER BY freq DESC LIMIT 10"
+            let sql = "SELECT * FROM pinyin_data WHERE py LIKE ? or abbr LIKE ? ORDER BY freq DESC LIMIT 20"
             let pattern = "\(prefix)%"
             words = try! Pinyin.fetchAll(db, sql: sql, arguments: [pattern, pattern])
         }

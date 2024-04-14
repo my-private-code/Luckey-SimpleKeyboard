@@ -38,10 +38,20 @@ public struct SimpleStandardKeyboard: View, ThemeableView {
         }
     }
     
+    @Environment(\.colorScheme) var colorScheme
     var candidatesRow: some View {
-        HStack(spacing: 10) {
-            ForEach($sharedState.candidates, id: \.self) { key in
-                KeyButton(text: self.$settings.text, letter: key.currentText)
+        ScrollView(.horizontal, showsIndicators: true) {
+            HStack(spacing: 0) {
+                ForEach($sharedState.candidates, id: \.self) { key in
+                    Text(key.currentText)
+                        .padding()
+                        .foregroundColor(.primary)
+                        .background(colorScheme.keyboardKeyColor)
+                        .onTapGesture {
+                            print("\(key.currentText) was tapped")
+                            // Todo: commit candidate(key.currentText)
+                        }
+                }
             }
         }
     }
@@ -104,7 +114,7 @@ public struct SimpleStandardKeyboard: View, ThemeableView {
             VStack(spacing: 10) {
                 if settings.showCandidates {
                     candidatesRow
-                        .padding(.bottom, 5)
+                        .padding(.bottom, 0)
                 }
                 if settings.showNumbers {
                     numbersRow
