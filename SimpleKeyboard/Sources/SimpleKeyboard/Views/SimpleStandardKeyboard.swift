@@ -26,6 +26,7 @@ public struct SimpleStandardKeyboard: View, ThemeableView {
             if let languageIcon = settings.languageButton {
                 ActionKeyButton(icon: languageIcon) {
                     self.settings.action?()
+                    sharedState.selectedLanguage = sharedState.selectedLanguage == "en" ? "zh" : "en"
                 }
             }
             if settings.showSpace {

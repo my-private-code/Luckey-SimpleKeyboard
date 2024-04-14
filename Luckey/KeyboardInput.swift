@@ -24,7 +24,8 @@ class KeyBoardInput: ObservableObject, SimpleKeyboardInput {
     func replaceAll(with text: String) {
         self.text = text
 
-        let words = imeService.fetchEnglishWords(withPrefix: text)
+        let words = sharedState.selectedLanguage == "en" ? imeService.fetchEnglishWords(withPrefix: text) : imeService.fetchHanZiByPinyin(withPrefix: text)
+
         sharedState.candidates = Array(words.prefix(4))
         
         // First, delete all existing text

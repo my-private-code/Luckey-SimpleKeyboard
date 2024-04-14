@@ -112,6 +112,7 @@ public class KeyboardSettings: ObservableObject {
 public class SharedState: ObservableObject {
     public static let shared = SharedState()
     @Published public var candidates: [String] = []
+    @Published public var selectedLanguage: String = "en"
 
     private init() {}  // Private initializer to ensure Singleton usage
 }
