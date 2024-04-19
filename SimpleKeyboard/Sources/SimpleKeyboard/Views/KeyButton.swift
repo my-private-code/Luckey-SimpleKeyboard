@@ -50,6 +50,7 @@ struct KeyButton: View, ClickableKey {
     var body: some View {
         Button(action: {
             self.text.append(self.letter)
+            SharedState.shared.compositionString.append(self.letter)
             didClick()
         }) {
             Text(letter)
@@ -101,10 +102,12 @@ struct FRAccentKeyButton: View {
             modified = "’"
             if let suffix = suffix {
                 self.text.append(suffix)
+                SharedState.shared.compositionString.append(suffix)
             }
         }
 
         text.append(modified)
+        SharedState.shared.compositionString.append(modified)
     }
 }
 
@@ -122,7 +125,11 @@ struct SpaceKeyButton: View, ClickableKey {
     }
 
     var body: some View {
-        Button(action: { self.text.append(" "); didClick() }) {
+        Button(action: { 
+            self.text.append(" ");
+            SharedState.shared.compositionString.append(" ")
+            didClick() 
+        }) {
             content
                 .padding()
                 .frame(idealWidth: .infinity, maxWidth: .infinity)
@@ -141,8 +148,10 @@ struct DeleteKeyButton: View {
 
     var body: some View {
         Button(action: {
-            guard !self.text.isEmpty else { return }
+            guard !SharedState.shared.compositionString.isEmpty else { return } 
+            // guard !self.text.isEmpty else { return }
             _ = self.text.removeLast()
+            _ = SharedState.shared.compositionString.removeLast()
         }) {
             if #available(iOS 15, macOS 12, *) {
                 AnyView(Image(systemName: "delete.left").dynamicTypeSize(.large))

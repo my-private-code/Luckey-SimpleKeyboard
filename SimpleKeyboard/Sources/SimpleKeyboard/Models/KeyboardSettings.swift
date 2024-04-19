@@ -111,8 +111,19 @@ public class KeyboardSettings: ObservableObject {
 
 public class SharedState: ObservableObject {
     public static let shared = SharedState()
+    
     @Published public var candidates: [String] = []
     @Published public var selectedLanguage: String = "en"
+    
+    // 用户当前输入字符串
+    @Published public var compositionString: String = ""
+    // 用户选中的单词
+    @Published public var commitCandidate: String = ""
+    
+    // If user input any non-alphabeta symbols, then reset commitSentence to empty string.
+    // Otherwise append commitCandidate to commitSentence, to be used to predict next word.
+    @Published public var commitSentence: String = ""
 
-    private init() {}  // Private initializer to ensure Singleton usage
+    // Private initializer to ensure Singleton usage
+    private init() {}  
 }

@@ -48,8 +48,7 @@ public struct SimpleStandardKeyboard: View, ThemeableView {
                         .foregroundColor(.primary)
                         .background(colorScheme.keyboardKeyColor)
                         .onTapGesture {
-                            print("\(key.currentText) was tapped")
-                            // Todo: commit candidate(key.currentText)
+                            sharedState.commitCandidate = key.currentText
                         }
                 }
             }
