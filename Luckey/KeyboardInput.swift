@@ -49,12 +49,19 @@ class KeyBoardInput: ObservableObject, SimpleKeyboardInput {
             if input.isEmpty {
                 self.sharedState.candidates = []
             } else if self.isSymbolChar(text: input) {
+                let lastChar = input.unicodeScalars.last
+                if (lastChar != " ") {
+                    self.textDocumentProxy.insertText(input + " ")
+                } else {
+                    self.textDocumentProxy.insertText(input)
+                }
                 self.sharedState.candidates = []
-                self.textDocumentProxy.insertText(input)
                 self.sharedState.compositionString = ""
             } else {
-                let words = self.sharedState.selectedLanguage == "en" ? self.imeService.fetchEnglishWords(withPrefix: input) : self.imeService.fetchHanZiByPinyin(withPrefix: input)
-                self.sharedState.candidates = words
+                let words = self.sharedState.selectedLanguage == "en" ? 
+                            self.imeService.fetchEnglishWords(withPrefix: input) :
+                            self.imeService.fetchHanZiByPinyin(withPrefix: input)
+                self.sharedState.candidates = [self.sharedState.selectedLanguage == "en" ? input + " " : input] + words
             }
         }
     }
