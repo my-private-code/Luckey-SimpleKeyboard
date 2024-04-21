@@ -39,6 +39,7 @@ class KeyBoardInput: ObservableObject, SimpleKeyboardInput {
     
     init(textDocumentProxy: any UITextDocumentProxy) {
         self.textDocumentProxy = textDocumentProxy
+        sharedState.textDocumentProxy = textDocumentProxy
         
         sharedState.$compositionString
             .sink { [weak self] newCompositionString in

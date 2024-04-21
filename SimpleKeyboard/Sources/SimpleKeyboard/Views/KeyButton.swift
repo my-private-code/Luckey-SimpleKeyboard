@@ -145,10 +145,12 @@ struct SpaceKeyButton: View, ClickableKey {
 
 struct DeleteKeyButton: View {
     @Binding var text: String
+    @ObservedObject private var sharedState = SharedState.shared
 
     var body: some View {
         Button(action: {
-            guard !SharedState.shared.compositionString.isEmpty else { return } 
+            sharedState.textDocumentProxy?.deleteBackward()
+            guard !SharedState.shared.compositionString.isEmpty else { return }
             // guard !self.text.isEmpty else { return }
             _ = self.text.removeLast()
             _ = SharedState.shared.compositionString.removeLast()

@@ -123,6 +123,8 @@ public class SharedState: ObservableObject {
     // If user input any non-alphabeta symbols, then reset commitSentence to empty string.
     // Otherwise append commitCandidate to commitSentence, to be used to predict next word.
     @Published public var commitSentence: String = ""
+    
+    @Published public var textDocumentProxy: (any UITextDocumentProxy)?
 
     // Private initializer to ensure Singleton usage
     private init() {}  
