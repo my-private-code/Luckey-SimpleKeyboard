@@ -9,6 +9,15 @@ import SimpleKeyboard
 import SwiftUI
 import Combine
 
+// Define a custom error type to handle different error scenarios
+enum NetworkError: Error {
+    case urlError
+    case serializationError
+    case networkError(String)
+    case dataError
+    case parsingError(String)
+}
+
 // 类似测试文件中的 InputTester
 class KeyBoardInput: ObservableObject, SimpleKeyboardInput {
     var imeService = ImeService()
@@ -16,6 +25,7 @@ class KeyBoardInput: ObservableObject, SimpleKeyboardInput {
     var textDocumentProxy: any UITextDocumentProxy
     private var cancellables: Set<AnyCancellable> = []
     private var cancellables2: Set<AnyCancellable> = []
+    private var cancellables3: Set<AnyCancellable> = []
     
     @ObservedObject private var sharedState = SharedState.shared
     
@@ -41,6 +51,12 @@ class KeyBoardInput: ObservableObject, SimpleKeyboardInput {
                 self?.commitStringDidChange(to: newCommitString)
             }
             .store(in: &cancellables2)
+        
+        sharedState.$commitSentence
+            .sink { [weak self] commitSentence in
+                self?.commitSentenceDidChange(to: commitSentence)
+            }
+            .store(in: &cancellables3)
     }
     
     func compositionStringDidChange(to input: String) {
@@ -48,12 +64,15 @@ class KeyBoardInput: ObservableObject, SimpleKeyboardInput {
             guard let self = self else { return }
             if input.isEmpty {
                 self.sharedState.candidates = []
+                sharedState.commitSentence = ""
             } else if self.isSymbolChar(text: input) {
                 let lastChar = input.unicodeScalars.last
                 if (lastChar != " ") {
                     self.textDocumentProxy.insertText(input + " ")
+                    self.sharedState.commitSentence = ""
                 } else {
                     self.textDocumentProxy.insertText(input)
+                    self.sharedState.commitSentence.append(input)
                 }
                 self.sharedState.candidates = []
                 self.sharedState.compositionString = ""
@@ -74,10 +93,88 @@ class KeyBoardInput: ObservableObject, SimpleKeyboardInput {
                 self.textDocumentProxy.insertText(input)
                 self.sharedState.compositionString = ""
                 self.sharedState.commitCandidate = ""
+                self.sharedState.commitSentence.append(input)
             }
         }
     }
+    
+    func commitSentenceDidChange(to sentence: String) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            if !sentence.isEmpty {
+                self.fetchPredictions(for: sentence + " ") { result in
+                    switch result {
+                    case .success(let response):
+                        print("Received response: \(response)")
+                        // Extract 'bert' and 'bert_cn' and convert them to [String]
+                        if let bertString = response["bert"] as? String, let bertCNString = response["bert_cn"] as? String {
+                            let bertArray = bertString.components(separatedBy: "\n").filter { !$0.isEmpty }
+                            let bertCNArray = bertCNString.components(separatedBy: "\n").filter { !$0.isEmpty }
+                            
+                            print("BERT array: \(bertArray)")
+                            print("BERT_CN array: \(bertCNArray)")
+                            self.sharedState.candidates = self.sharedState.selectedLanguage == "en" ? bertArray : bertCNArray;
+                        } else {
+                            print("Error: Invalid data format")
+                        }
+                    case .failure(let error):
+                        print("Error: \(error)")
+                    }
+                }
+                
+            }
+        }
+    }
+    
+    // get predicted next words based on previous inputed words.
+    func fetchPredictions(for text: String, completion: @escaping (Result<[String: Any], NetworkError>) -> Void) {
+        let urlString = "http://127.0.0.1:8080/get_end_predictions"
+        guard let url = URL(string: urlString) else {
+            completion(.failure(.urlError))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
+        let jsonObject: [String: Any] = [
+            "input_text": text,
+            "top_k": "10"
+        ]
+
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: jsonObject, options: [])
+            request.httpBody = jsonData
+        } catch {
+            completion(.failure(.serializationError))
+            return
+        }
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(.networkError(error.localizedDescription)))
+                return
+            }
+
+            guard let data = data else {
+                completion(.failure(.dataError))
+                return
+            }
+
+            do {
+                if let jsonResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    completion(.success(jsonResponse))
+                } else {
+                    completion(.failure(.parsingError("Invalid response format")))
+                }
+            } catch {
+                completion(.failure(.parsingError(error.localizedDescription)))
+            }
+        }
+
+        task.resume()
+    }
     
     func isSymbolChar(text: String) -> Bool {
         if let lastChar = text.unicodeScalars.last {
