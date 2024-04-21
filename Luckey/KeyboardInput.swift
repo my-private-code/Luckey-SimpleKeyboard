@@ -72,7 +72,11 @@ class KeyBoardInput: ObservableObject, SimpleKeyboardInput {
                     self.sharedState.commitSentence = ""
                 } else {
                     self.textDocumentProxy.insertText(input)
-                    self.sharedState.commitSentence.append(input)
+                    if self.sharedState.selectedLanguage == "en" && !self.sharedState.commitSentence.hasSuffix(" ") {
+                        self.sharedState.commitSentence.append(" " + input)
+                    } else {
+                        self.sharedState.commitSentence.append(input)
+                    }
                 }
                 self.sharedState.candidates = []
                 self.sharedState.compositionString = ""
@@ -90,10 +94,19 @@ class KeyBoardInput: ObservableObject, SimpleKeyboardInput {
             guard let self = self else { return }
             if !input.isEmpty {
                 self.sharedState.candidates = []
-                self.textDocumentProxy.insertText(input)
+                if self.sharedState.selectedLanguage == "en" && !input.hasSuffix(" ") {
+                    self.textDocumentProxy.insertText(input + " ")
+                } else {
+                    self.textDocumentProxy.insertText(input)
+                }
+                
                 self.sharedState.compositionString = ""
                 self.sharedState.commitCandidate = ""
-                self.sharedState.commitSentence.append(input)
+                if self.sharedState.selectedLanguage == "en" && !self.sharedState.commitSentence.hasSuffix(" ") {
+                    self.sharedState.commitSentence.append(" " + input)
+                } else {
+                    self.sharedState.commitSentence.append("" + input)
+                }
             }
         }
     }
@@ -105,14 +118,10 @@ class KeyBoardInput: ObservableObject, SimpleKeyboardInput {
                 self.fetchPredictions(for: sentence + " ") { result in
                     switch result {
                     case .success(let response):
-                        print("Received response: \(response)")
                         // Extract 'bert' and 'bert_cn' and convert them to [String]
                         if let bertString = response["bert"] as? String, let bertCNString = response["bert_cn"] as? String {
-                            let bertArray = bertString.components(separatedBy: "\n").filter { !$0.isEmpty }
-                            let bertCNArray = bertCNString.components(separatedBy: "\n").filter { !$0.isEmpty }
-                            
-                            print("BERT array: \(bertArray)")
-                            print("BERT_CN array: \(bertCNArray)")
+                            let bertArray = bertString.components(separatedBy: "\n").filter { !$0.isEmpty && $0 != "[UNK]" }
+                        let bertCNArray = bertCNString.components(separatedBy: "\n").filter { !$0.isEmpty && $0 != "[UNK]" }
                             self.sharedState.candidates = self.sharedState.selectedLanguage == "en" ? bertArray : bertCNArray;
                         } else {
                             print("Error: Invalid data format")
@@ -128,7 +137,8 @@ class KeyBoardInput: ObservableObject, SimpleKeyboardInput {
     
     // get predicted next words based on previous inputed words.
     func fetchPredictions(for text: String, completion: @escaping (Result<[String: Any], NetworkError>) -> Void) {
-        let urlString = "http://127.0.0.1:8080/get_end_predictions"
+//        let urlString = "http://127.0.0.1:8080/get_end_predictions"
+        let urlString = "http://47.108.172.220:8080/get_end_predictions"
         guard let url = URL(string: urlString) else {
             completion(.failure(.urlError))
             return
