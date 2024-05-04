@@ -44,15 +44,19 @@ public struct SimpleStandardKeyboard: View, ThemeableView {
             HStack(spacing: 0) {
                 ForEach($sharedState.candidates, id: \.self) { key in
                     Text(key.currentText)
-                        .padding()
+                        .padding(.leading, 10)
                         .foregroundColor(.primary)
-                        .background(colorScheme.keyboardKeyColor)
+                        .background(Color.clear)
                         .onTapGesture {
                             sharedState.commitCandidate = key.currentText
                         }
                 }
             }
         }
+        .frame(height: 30)
+        .foregroundColor(.primary)
+        .background(Color.clear)
+        .cornerRadius(5)
     }
 
     var numbersRow: some View {
@@ -123,7 +127,7 @@ public struct SimpleStandardKeyboard: View, ThemeableView {
                 spaceRow
             }
             .transition(.move(edge: .bottom).combined(with: .opacity))
-            .modifier(OuterKeyboardThemingModifier(theme: theme, backroundColor: keyboardBackground))
+            .modifier(OuterKeyboardThemingModifier(theme: theme, backroundColor: Color.clear))
         }
     }
 }
