@@ -64,7 +64,7 @@ class KeyBoardInput: ObservableObject, SimpleKeyboardInput {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             if input.isEmpty {
-//                self.sharedState.candidates = []
+                self.sharedState.candidates = []
 //                sharedState.commitSentence = ""
             } else if self.isSymbolChar(text: input) {
                 let lastChar = input.unicodeScalars.last
@@ -143,8 +143,8 @@ class KeyBoardInput: ObservableObject, SimpleKeyboardInput {
     
     // get predicted next words based on previous inputed words.
     func fetchPredictions(for text: String, completion: @escaping (Result<[String: Any], NetworkError>) -> Void) {
-//        let urlString = "http://127.0.0.1:8080/get_end_predictions"
-        let urlString = "http://47.108.172.220:8080/get_end_predictions"
+        let urlString = "http://127.0.0.1:8080/get_end_predictions"
+//        let urlString = "http://47.108.172.220:8080/get_end_predictions"
         guard let url = URL(string: urlString) else {
             completion(.failure(.urlError))
             return

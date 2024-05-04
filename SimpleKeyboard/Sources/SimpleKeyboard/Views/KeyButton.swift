@@ -149,11 +149,17 @@ struct DeleteKeyButton: View {
 
     var body: some View {
         Button(action: {
-            sharedState.textDocumentProxy?.deleteBackward()
-            guard !SharedState.shared.compositionString.isEmpty else { return }
-            // guard !self.text.isEmpty else { return }
-            _ = self.text.removeLast()
-            _ = SharedState.shared.compositionString.removeLast()
+            if SharedState.shared.compositionString.isEmpty {
+                sharedState.textDocumentProxy?.deleteBackward()
+            } else {
+                _ = self.text.removeLast()
+                _ = SharedState.shared.compositionString.removeLast()
+            }
+//            sharedState.textDocumentProxy?.deleteBackward()
+//            guard !SharedState.shared.compositionString.isEmpty else { return }
+//            // guard !self.text.isEmpty else { return }
+//            _ = self.text.removeLast()
+//            _ = SharedState.shared.compositionString.removeLast()
         }) {
             if #available(iOS 15, macOS 12, *) {
                 AnyView(Image(systemName: "delete.left").dynamicTypeSize(.large))
