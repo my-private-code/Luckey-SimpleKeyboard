@@ -85,7 +85,16 @@ class KeyBoardInput: ObservableObject, SimpleKeyboardInput {
                 let words = self.sharedState.selectedLanguage == "en" ? 
                             self.imeService.fetchEnglishWords(withPrefix: input) :
                             self.imeService.fetchHanZiByPinyin(withPrefix: input)
-                self.sharedState.candidates = [self.sharedState.selectedLanguage == "en" ? input + " " : input] + words
+                let allCandidates = [input] + words
+                var seenItems = Set<String>()
+                var uniqueCandidates = [String]()
+                for candidate in allCandidates {
+                    if !seenItems.contains(candidate) {
+                        uniqueCandidates.append(self.sharedState.selectedLanguage == "en" ? candidate + " " : candidate)
+                        seenItems.insert(candidate)
+                    }
+                }
+                self.sharedState.candidates = uniqueCandidates
             }
         }
     }

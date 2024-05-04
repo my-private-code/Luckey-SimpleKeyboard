@@ -55,7 +55,7 @@ class ImeService {
             let pattern = "\(prefix)%"
             words = try! Word.fetchAll(db, sql: sql, arguments: [pattern])
         }
-        return words.map{$0.word + " "}
+        return words.map{$0.word}
     }
     
     func fetchHanZiByPinyin(withPrefix prefix: String) -> [String] {
