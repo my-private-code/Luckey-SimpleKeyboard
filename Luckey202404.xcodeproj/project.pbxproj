@@ -18,7 +18,6 @@
 		AB24878B2BCA0E8F005A812C /* Luckey202404UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB24878A2BCA0E8F005A812C /* Luckey202404UITestsLaunchTests.swift */; };
 		AB24879E2BCA0F09005A812C /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB24879D2BCA0F09005A812C /* KeyboardViewController.swift */; };
 		AB2487A22BCA0F09005A812C /* Luckey.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AB24879B2BCA0F09005A812C /* Luckey.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		AB2487AB2BCA1B64005A812C /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2487AA2BCA1B64005A812C /* KeyboardView.swift */; };
 		AB2487AE2BCAA53E005A812C /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = AB2487AD2BCAA53E005A812C /* GRDB */; };
 		AB2487B12BCAA6E1005A812C /* english.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = AB2487AF2BCAA6E1005A812C /* english.sqlite3 */; };
 		AB2487B22BCAA6E1005A812C /* pinyin_data.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = AB2487B02BCAA6E1005A812C /* pinyin_data.sqlite3 */; };
@@ -78,7 +77,6 @@
 		AB24879B2BCA0F09005A812C /* Luckey.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Luckey.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB24879D2BCA0F09005A812C /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		AB24879F2BCA0F09005A812C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AB2487AA2BCA1B64005A812C /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		AB2487AF2BCAA6E1005A812C /* english.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = english.sqlite3; path = sqlite/english.sqlite3; sourceTree = "<group>"; };
 		AB2487B02BCAA6E1005A812C /* pinyin_data.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = pinyin_data.sqlite3; path = sqlite/pinyin_data.sqlite3; sourceTree = "<group>"; };
 		AB2487B32BCAA706005A812C /* ImeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImeService.swift; sourceTree = "<group>"; };
@@ -183,7 +181,6 @@
 				AB2487B02BCAA6E1005A812C /* pinyin_data.sqlite3 */,
 				AB24879F2BCA0F09005A812C /* Info.plist */,
 				AB24879D2BCA0F09005A812C /* KeyboardViewController.swift */,
-				AB2487AA2BCA1B64005A812C /* KeyboardView.swift */,
 				AB2487B32BCAA706005A812C /* ImeService.swift */,
 				AB16E3472BCBF8DF0019D04E /* KeyboardInput.swift */,
 			);
@@ -387,7 +384,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB24879E2BCA0F09005A812C /* KeyboardViewController.swift in Sources */,
-				AB2487AB2BCA1B64005A812C /* KeyboardView.swift in Sources */,
 				AB2487B42BCAA706005A812C /* ImeService.swift in Sources */,
 				AB16E3482BCBF8DF0019D04E /* KeyboardInput.swift in Sources */,
 			);
