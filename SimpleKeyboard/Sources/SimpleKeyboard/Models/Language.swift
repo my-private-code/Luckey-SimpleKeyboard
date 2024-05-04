@@ -8,8 +8,18 @@
 import Foundation
 import CoreGraphics
 
+var sharedState = SharedState.shared
+
 public enum Language: CaseIterable {
     static func numbers(areUppercased: Bool) -> [String] {
+        if (!areUppercased) {
+            return ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+        }
+        if (sharedState.selectedLanguage == "en") {
+            return ["!", "?", ".", "%", "+", "-", "_", "=", "@", "#"]
+        } else if sharedState.selectedLanguage == "zh" {
+            return ["！", "？", "。", "%", "+", "-", "_", "=", "@", "#"]
+        }
         return areUppercased ? ["!", "?", ".", "%", "+", "-", "_", "=", "@", "#"] :
             ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
     }
