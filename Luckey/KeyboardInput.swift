@@ -64,20 +64,13 @@ class KeyBoardInput: ObservableObject, SimpleKeyboardInput {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             if input.isEmpty {
-                self.sharedState.candidates = []
-                sharedState.commitSentence = ""
+//                self.sharedState.candidates = []
+//                sharedState.commitSentence = ""
             } else if self.isSymbolChar(text: input) {
                 let lastChar = input.unicodeScalars.last
                 if (lastChar != " ") {
                     self.textDocumentProxy.insertText(input + " ")
                     self.sharedState.commitSentence = ""
-                } else {
-                    self.textDocumentProxy.insertText(input)
-                    if self.sharedState.selectedLanguage == "en" && !self.sharedState.commitSentence.hasSuffix(" ") {
-                        self.sharedState.commitSentence.append(" " + input)
-                    } else {
-                        self.sharedState.commitSentence.append(input)
-                    }
                 }
                 self.sharedState.candidates = []
                 self.sharedState.compositionString = ""
@@ -112,35 +105,38 @@ class KeyBoardInput: ObservableObject, SimpleKeyboardInput {
                 
                 self.sharedState.compositionString = ""
                 self.sharedState.commitCandidate = ""
-                if self.sharedState.selectedLanguage == "en" && !self.sharedState.commitSentence.hasSuffix(" ") {
-                    self.sharedState.commitSentence.append(" " + input)
+                
+                if self.sharedState.selectedLanguage == "en" {
+                    let commitSentence = sharedState.commitSentence + " " + input
+                    let words = commitSentence.split(whereSeparator: { $0.isWhitespace })
+                    sharedState.commitSentence = words.joined(separator: " ")
                 } else {
-                    self.sharedState.commitSentence.append("" + input)
+                    self.sharedState.commitSentence += input
                 }
             }
         }
     }
     
     func commitSentenceDidChange(to sentence: String) {
-        DispatchQueue.main.async { [weak self] in
+        guard !sentence.isEmpty else { return }
+        
+        self.fetchPredictions(for: sentence + " ") { [weak self] result in
             guard let self = self else { return }
-            if !sentence.isEmpty {
-                self.fetchPredictions(for: sentence + " ") { result in
-                    switch result {
-                    case .success(let response):
-                        // Extract 'bert' and 'bert_cn' and convert them to [String]
-                        if let bertString = response["bert"] as? String, let bertCNString = response["bert_cn"] as? String {
-                            let bertArray = bertString.components(separatedBy: "\n").filter { !$0.isEmpty && $0 != "[UNK]" }
-                        let bertCNArray = bertCNString.components(separatedBy: "\n").filter { !$0.isEmpty && $0 != "[UNK]" }
-                            self.sharedState.candidates = self.sharedState.selectedLanguage == "en" ? bertArray : bertCNArray;
-                        } else {
-                            print("Error: Invalid data format")
-                        }
-                    case .failure(let error):
-                        print("Error: \(error)")
+            
+            switch result {
+            case .success(let response):
+                if let bertString = response["bert"] as? String, let bertCNString = response["bert_cn"] as? String {
+                    let bertArray = bertString.components(separatedBy: "\n").filter { !$0.isEmpty && $0 != "[UNK]" && $0 != "..."}
+                    let bertCNArray = bertCNString.components(separatedBy: "\n").filter { !$0.isEmpty && $0 != "[UNK]" && $0 != "..."}
+                    
+                    DispatchQueue.main.async {
+                        self.sharedState.candidates = self.sharedState.selectedLanguage == "en" ? bertArray : bertCNArray
                     }
+                } else {
+                    print("Error: Invalid data format")
                 }
-                
+            case .failure(let error):
+                print("Error: \(error)")
             }
         }
     }
