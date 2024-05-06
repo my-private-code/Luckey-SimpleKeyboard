@@ -33,6 +33,8 @@ public struct SimpleStandardKeyboard: View, ThemeableView {
             if let actionIcon = settings.actionButton {
                 ActionKeyButton(icon: actionIcon) {
                     self.settings.action?()
+                    
+                    sharedState.textDocumentProxy?.insertText("\n")
                 }
             }
         }
