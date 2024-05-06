@@ -117,6 +117,7 @@ public class SharedState: ObservableObject {
     
     @Published public var candidates: [String] = []
     @Published public var selectedLanguage: String = "en"
+    @Published public var showEmoj: Bool = false
     
     // 用户当前输入字符串
     @Published public var compositionString: String = ""

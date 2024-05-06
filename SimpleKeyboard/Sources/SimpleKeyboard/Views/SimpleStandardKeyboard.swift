@@ -7,11 +7,51 @@
 
 import SwiftUI
 
+struct EmojiPickerView: View {
+    let emojis = ["😊", "👍", "❤️", "😂", "🔥", "😍", "👏", "✔️", "💩", "👀"]
+    let emojis2 = ["🥰", "😍", "😇", "😋", "🤗", "🤔", "😴", "🥵", "😱", "😓"]
+    var onEmojiSelect: (String) -> Void
+    
+    var body: some View {
+        VStack(spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(emojis, id: \.self) { emoji in
+                        Button(action: {
+                            onEmojiSelect(emoji)
+                        }) {
+                            Text(emoji)
+                                .font(.largeTitle)
+                                .frame(width: 40, height: 40)
+                        }
+                    }
+                }
+            }
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(emojis2, id: \.self) { emoji in
+                        Button(action: {
+                            onEmojiSelect(emoji)
+                        }) {
+                            Text(emoji)
+                                .font(.largeTitle)
+                                .frame(width: 40, height: 40)
+                        }
+                    }
+                }
+            }
+        })
+        
+
+    }
+}
+
 public struct SimpleStandardKeyboard: View, ThemeableView {
     var theme: KeyboardTheme { settings.theme }
 
     @ObservedObject var settings: KeyboardSettings
     @ObservedObject private var sharedState = SharedState.shared
+    @State private var showEmojiPicker = false
 
     public init(settings: KeyboardSettings, textInput textInputOverride: Binding<String>? = nil) {
         self.settings = settings
@@ -21,11 +61,20 @@ public struct SimpleStandardKeyboard: View, ThemeableView {
         }
     }
 
+    var emojiButton: some View {
+        Button(action: {
+            showEmojiPicker.toggle()
+        }) {
+            Text("\u{1F60A}")
+        }
+    }
+    
     var spaceRow: some View {
         HStack {
             if let languageIcon = settings.languageButton {
                 SwitchLanguageButton()
             }
+            emojiButton
             if settings.showSpace {
                 SpaceKeyButton(text: $settings.text)
                     .layoutPriority(2)
@@ -141,6 +190,23 @@ public struct SimpleStandardKeyboard: View, ThemeableView {
                 keyboardRows
                 spaceRow
             }
+            .overlay(
+                Group {
+                    if showEmojiPicker {
+                        EmojiPickerView { emoji in
+                            showEmojiPicker = false
+                            
+                            sharedState.textDocumentProxy?.insertText(emoji)
+                            sharedState.compositionString = ""
+                            sharedState.commitSentence = ""
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.black.opacity(0.7))
+                        .transition(.opacity) // Smooth transition for showing/hiding
+                    }
+                },
+                alignment: .bottom // Align to the bottom to cover the keyboard area
+            )
             .transition(.move(edge: .bottom).combined(with: .opacity))
             .modifier(OuterKeyboardThemingModifier(theme: theme, backroundColor: Color.clear))
         }
