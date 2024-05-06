@@ -77,6 +77,7 @@ class KeyboardViewController: UIInputViewController {
                                                 textInput: textInput,
                                                 theme: KeyboardTheme.floating,
                                                 showNumbers: true,
+                                                showSymbols: true,
                                                 isUpperCase: false
                                                 )
         let hostingController = MyKeyboardMaker(settings: keyboardSettings).makeViewController()

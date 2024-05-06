@@ -61,7 +61,15 @@ public struct SimpleStandardKeyboard: View, ThemeableView {
 
     var numbersRow: some View {
         HStack(spacing: 10) {
-            ForEach(Language.numbers(areUppercased: self.settings.isUpperCase ?? false), id: \.self) { key in
+            ForEach(Language.numbers(areUppercased: false), id: \.self) { key in
+                KeyButton(text: self.$settings.text, letter: key)
+            }
+        }
+    }
+    
+    var commonSymbolsRow: some View {
+        HStack(spacing: 10) {
+            ForEach(Language.numbers(areUppercased: true), id: \.self) { key in
                 KeyButton(text: self.$settings.text, letter: key)
             }
         }
@@ -119,9 +127,14 @@ public struct SimpleStandardKeyboard: View, ThemeableView {
                     candidatesRow
                         .padding(.bottom, 0)
                 }
+                if settings.showSymbols {
+                    commonSymbolsRow
+                        .padding(.bottom, 5)
+                }
                 if settings.showNumbers {
                     numbersRow
                         .padding(.bottom, 5)
+                    
                 }
                 keyboardRows
                 spaceRow

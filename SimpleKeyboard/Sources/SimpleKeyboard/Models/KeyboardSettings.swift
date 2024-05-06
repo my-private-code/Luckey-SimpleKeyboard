@@ -71,6 +71,7 @@ public class KeyboardSettings: ObservableObject {
     @Published public var isShown = true
 
     @Published public var showNumbers: Bool
+    @Published public var showSymbols: Bool
     @Published public var showSpace: Bool
     @Published public var showCandidates: Bool
 
@@ -86,6 +87,7 @@ public class KeyboardSettings: ObservableObject {
         actionButton: Icon? = .done,
         languageButton: Icon? = .language,
         showNumbers: Bool = false,
+        showSymbols: Bool = false,
         showSpace: Bool = true,
         showCandidates: Bool = true,
         isUpperCase: Bool? = nil,
@@ -95,6 +97,7 @@ public class KeyboardSettings: ObservableObject {
             self.language = language
             self.action = action
             self.showNumbers = showNumbers
+            self.showSymbols = showSymbols
             self.showSpace = showSpace
             self.isUpperCase = isUpperCase
             self.actionButton = actionButton
