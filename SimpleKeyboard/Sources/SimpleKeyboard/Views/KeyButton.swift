@@ -125,10 +125,11 @@ struct SpaceKeyButton: View, ClickableKey {
     }
 
     var body: some View {
-        Button(action: { 
-            self.text.append(" ");
-            SharedState.shared.compositionString.append(" ")
-            didClick() 
+        Button(action: {
+            SharedState.shared.textDocumentProxy?.insertText(" ")
+            SharedState.shared.compositionString = ""
+            SharedState.shared.commitSentence = ""
+            didClick()
         }) {
             content
                 .padding()
@@ -227,6 +228,8 @@ struct SwitchLanguageButton: View {
     var body: some View {
         Button(action: {
             sharedState.selectedLanguage = sharedState.selectedLanguage == "en" ? "zh" : "en"
+            sharedState.commitSentence = ""
+            sharedState.compositionString = ""
         }) {
             HStack {
                 Text("英")
