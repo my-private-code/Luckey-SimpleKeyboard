@@ -1,7 +1,7 @@
 # Lukey: A custom keyboard for iOS 15+ powered by SwiftUI and Sqlite.
 Port hallelujah IME to iOS platform.
-- English input mode
-- Chinese input mode
+- English autocompletion input mode
+- Chinese Pinyin input mode
 - Support next work prediction, backend use https://github.com/my-private-code/next_word_prediction.
 - Can input common emoj.
 
