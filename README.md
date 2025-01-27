@@ -1,4 +1,4 @@
-# Lukey: A custom keyboard for iOS 15+
+# Lukey: A custom keyboard for iOS 15+ powered by SwiftUI and Sqlite.
 Port hallelujah IME to iOS platform.
 - English input mode
 - Chinese input mode
