@@ -3,6 +3,7 @@ Port hallelujah IME to iOS platform.
 - English input mode
 - Chinese input mode
 - Support next work prediction, backend use https://github.com/my-private-code/next_word_prediction.
+- Can input common emoj.
 
 UI is based on https://github.com/thisIsTheFoxe/SimpleKeyboard
 
